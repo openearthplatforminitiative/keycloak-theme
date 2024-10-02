@@ -1,0 +1,50 @@
+.pf-v5-c-login__container {
+    grid-template-areas: "main";
+    grid-template-columns: 34rem;
+}
+
+#kc-header-wrapper {
+    padding: 62px 10px 20px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.login-pf body {
+    background-color: #fff;
+    height: 100%;
+    font-family: Inter, Arial, sans-serif;
+}
+
+div.kc-logo-text {
+    background-image: url(../img/keycloak-logo-text.png);
+    background-repeat: no-repeat;
+    height: 63px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+div.kc-logo-text span {
+    display: none;
+}
+
+main.pf-v5-c-login__main {
+    background-color: rgb(242 244 239/ 1) !important;
+}
+
+h1.pf-v5-c-title {
+    font-weight: 400;
+}
+
+div.custom-no-display {
+    display: none;
+}
+
+.custom-openepi-button-primary {
+    background-color: rgb(0 109 65/ 1) !important;
+    color: #fff;
+}
+
+:root {
+    --pf-v5-global--BorderWidth--md: 0px;
+}
