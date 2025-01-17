@@ -1,2 +1,2 @@
 FROM busybox
-COPY themes/openepi /openepi
+COPY dist_keycloak/keycloak-theme-for-kc-all-other-versions.jar /openepi
