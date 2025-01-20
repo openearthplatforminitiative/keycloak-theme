@@ -14,7 +14,7 @@ export default function LoginIdpLinkConfirm(props: PageProps<Extract<KcContext, 
     return (
         <Template kcContext={kcContext} i18n={i18n} doUseDefaultCss={doUseDefaultCss} classes={classes} headerNode={msg("confirmLinkIdpTitle")}>
             <form id="kc-register-form" action={url.loginAction} method="post">
-                <HStack w="full" flexWrap="wrap" gap={4}>
+                <HStack w="full" flexWrap="wrap" gap={4} alignItems="stretch">
                     <Card flex={1}>
                         <CardContent
                             /* @ts-expect-error-error */

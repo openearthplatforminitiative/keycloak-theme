@@ -20,7 +20,7 @@ export default function LoginIdpLinkConfirmOverride(props: PageProps<Extract<KcC
     return (
         <Template kcContext={kcContext} i18n={i18n} doUseDefaultCss={doUseDefaultCss} classes={classes} headerNode={msg("confirmOverrideIdpTitle")}>
             <form id="kc-register-form" action={url.loginAction} method="post">
-                <HStack w="full" flexWrap="wrap" gap={4}>
+                <HStack w="full" flexWrap="wrap" gap={4} alignItems="stretch">
                     <Card flex={1}>
                         {/* @ts-expect-error-error */}
                         <CardContent id="loginRestartLink" href={url.loginRestartFlowUrl}>

@@ -1,5 +1,13 @@
 @layer reset, base, tokens, recipes, utilities;
 
+html {
+  height: 100%;
+}
+
 body {
   background-color: #f3f4f6;
+}
+
+#storybook-root, #root {
+  height: 100%;
 }

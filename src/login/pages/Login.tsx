@@ -34,13 +34,20 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                         >
                             {social.providers.map((...[p]) => (
                                 <GridItem key={p.alias}>
-                                    <Card id={`social-${p.alias}`} w="full" maxW="full" flexGrow={1} order={getProviderOrder(p.providerId)}>
+                                    <Card
+                                        external
+                                        id={`social-${p.alias} ${p.displayName} ${p.providerId}`}
+                                        w="full"
+                                        maxW="full"
+                                        flexGrow={1}
+                                        order={getProviderOrder(p.providerId)}
+                                    >
                                         {/* @ts-expect-error-error */}
                                         <CardContent href={p.loginUrl}>
                                             <CardBody w="full">
                                                 <HStack>
-                                                    <Icon icon={getProviderLogo(p.providerId)} textStyle="3xl" />
-                                                    <CardTitle>
+                                                    <Icon icon={getProviderLogo(p.alias)} textStyle="3xl" />
+                                                    <CardTitle external>
                                                         <span>
                                                             Sign in with <span dangerouslySetInnerHTML={{ __html: kcSanitize(p.displayName) }} />
                                                         </span>

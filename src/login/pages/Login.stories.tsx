@@ -281,6 +281,42 @@ export const WithTwoSocialProviders: Story = {
         />
     )
 };
+
+export const WithThreeSocialProviders: Story = {
+    render: args => (
+        <KcPageStory
+            {...args}
+            kcContext={{
+                social: {
+                    displayInfo: true,
+                    providers: [
+                        {
+                            loginUrl: "google",
+                            alias: "google",
+                            providerId: "google",
+                            displayName: "Google",
+                            iconClasses: "fa fa-google"
+                        },
+                        {
+                            loginUrl: "microsoft",
+                            alias: "microsoft",
+                            providerId: "microsoft",
+                            displayName: "Microsoft",
+                            iconClasses: "fa fa-windows"
+                        },
+                        {
+                            loginUrl: "discord",
+                            alias: "discord",
+                            providerId: "discord",
+                            displayName: "Discord",
+                            iconClasses: "fa fa-discord"
+                        }
+                    ]
+                }
+            }}
+        />
+    )
+};
 export const WithNoSocialProviders: Story = {
     render: args => (
         <KcPageStory
