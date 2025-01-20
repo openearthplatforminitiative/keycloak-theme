@@ -1,7 +1,13 @@
-# Note
+# NOTE
 
-This repo uses @openepi/react-ui, @openepi/styled-system and @openepi/icons
-Since these repos are not yet available, you need to change package.json and refer to them locally
+`@openepi/react-ui`, `@openepi/icons` and `@openepi/styled-system` is not available yet as npm packages.
+Therefore, you have to link to them locally. This can be done like this:
+
+```bash
+npm install --save <path_to_repo>/frontend-packages/packages/react-ui
+npm install --save <path_to_repo>/frontend-packages/packages/icons
+npm install --save <path_to_repo>/frontend-packages/packages/styled-system
+```
 
 # Quick start
 
@@ -23,13 +29,17 @@ npx keycloakify add-story
 npx keycloakify eject-page
 ```
 
-and add the code from the terminal to `KcPage.tsx`
+and add the code from the terminal to `KcPage.tsx`. We want to save the original file, so create a copy of the file and add `__` in for to indicate it is not in use.
+
+### Outside keycloak
 
 To see your changes on save, use
 
 ```bash
 npm run storyboard
 ```
+
+### Inside keycloak
 
 You can also use it inside a test keycloak using
 
