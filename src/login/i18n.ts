@@ -11,7 +11,9 @@ const { useI18n, ofTypeI18n } = i18nBuilder
     .withCustomTranslations({
         en: {
             loginAccountTitle: "Sign in with your preferred provider",
-            pageExpiredMsg1: "Restart the login process"
+            pageExpiredMsg1: "Restart the login process",
+            pageExpiredMsg2: "Continue the login process",
+            backToApplication: "Back to application"
         }
     })
     .build();
