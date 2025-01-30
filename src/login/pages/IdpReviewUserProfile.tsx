@@ -7,55 +7,51 @@ import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFo
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import { Button } from "@openepi/react-ui";
-import { HStack } from "@openepi/styled-system/jsx";
+import { HStack, styled } from "@openepi/styled-system/jsx";
 
 type IdpReviewUserProfileProps = PageProps<Extract<KcContext, { pageId: "idp-review-user-profile.ftl" }>, I18n> & {
-    UserProfileFormFields: LazyOrNot<(props: UserProfileFormFieldsProps) => JSX.Element>;
-    doMakeUserConfirmPassword: boolean;
+  UserProfileFormFields: LazyOrNot<(props: UserProfileFormFieldsProps) => JSX.Element>;
+  doMakeUserConfirmPassword: boolean;
 };
 
 export default function IdpReviewUserProfile(props: IdpReviewUserProfileProps) {
-    const { kcContext, i18n, doUseDefaultCss, Template, classes, UserProfileFormFields, doMakeUserConfirmPassword } = props;
+  const { kcContext, i18n, doUseDefaultCss, Template, classes, UserProfileFormFields, doMakeUserConfirmPassword } = props;
 
-    const { kcClsx } = getKcClsx({
-        doUseDefaultCss,
-        classes
-    });
+  const { kcClsx } = getKcClsx({
+    doUseDefaultCss,
+    classes
+  });
 
-    const { msg, msgStr } = i18n;
+  const { msg, msgStr } = i18n;
 
-    const { url, messagesPerField } = kcContext;
+  const { url, messagesPerField } = kcContext;
 
-    const [isFomSubmittable, setIsFomSubmittable] = useState(false);
+  const [isFomSubmittable, setIsFomSubmittable] = useState(false);
 
-    return (
-        <Template
-            kcContext={kcContext}
-            i18n={i18n}
-            doUseDefaultCss={doUseDefaultCss}
-            classes={classes}
-            displayMessage={messagesPerField.exists("global")}
-            displayRequiredFields
-            headerNode={msg("loginIdpReviewProfileTitle")}
-        >
-            <form id="kc-idp-review-profile-form" action={url.loginAction} method="post">
-                <UserProfileFormFields
-                    kcContext={kcContext}
-                    i18n={i18n}
-                    onIsFormSubmittableValueChange={setIsFomSubmittable}
-                    kcClsx={kcClsx}
-                    doMakeUserConfirmPassword={doMakeUserConfirmPassword}
-                />
-                <HStack justify="end" mt={4}>
-                    <Button
-                        // @ts-expect-error-error
-                        as="input"
-                        type="submit"
-                        value={msgStr("doSubmit")}
-                        disabled={!isFomSubmittable}
-                    />
-                </HStack>
-            </form>
-        </Template>
-    );
+  return (
+    <Template
+      kcContext={kcContext}
+      i18n={i18n}
+      doUseDefaultCss={doUseDefaultCss}
+      classes={classes}
+      displayMessage={messagesPerField.exists("global")}
+      displayRequiredFields
+      headerNode={msg("loginIdpReviewProfileTitle")}
+    >
+      <form id="kc-idp-review-profile-form" action={url.loginAction} method="post">
+        <UserProfileFormFields
+          kcContext={kcContext}
+          i18n={i18n}
+          onIsFormSubmittableValueChange={setIsFomSubmittable}
+          kcClsx={kcClsx}
+          doMakeUserConfirmPassword={doMakeUserConfirmPassword}
+        />
+        <HStack justify="end" mt={4}>
+          <Button asChild>
+            <styled.input type="submit" value={msgStr("doSubmit")} tabIndex={0} disabled={!isFomSubmittable} />
+          </Button>
+        </HStack>
+      </form>
+    </Template>
+  );
 }

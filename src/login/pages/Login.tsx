@@ -4,67 +4,67 @@ import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import { Icon, CardTitle, Card, CardBody, CardContent } from "@openepi/react-ui";
 import { Grid, GridItem, HStack } from "@openepi/styled-system/jsx";
-import { getProviderLogo, getProviderOrder } from "../../logos/ssoProviders";
+import { getProviderLogo, getProviderOrder } from "../../components/ssoProviders";
 
 export default function Login(props: PageProps<Extract<KcContext, { pageId: "login.ftl" }>, I18n>) {
-    const { kcContext, i18n, doUseDefaultCss, Template } = props;
+  const { kcContext, i18n, doUseDefaultCss, Template } = props;
 
-    const { social, realm, registrationDisabled, messagesPerField } = kcContext;
+  const { social, realm, registrationDisabled, messagesPerField } = kcContext;
 
-    const { msg } = i18n;
+  const { msg } = i18n;
 
-    return (
-        <Template
-            kcContext={kcContext}
-            i18n={i18n}
-            doUseDefaultCss={doUseDefaultCss}
-            displayMessage={!messagesPerField.existsError("username", "password")}
-            headerNode={msg("loginAccountTitle")}
-            displayInfo={realm.password && realm.registrationAllowed && !registrationDisabled}
-            infoNode={<></>}
-            socialProvidersNode={
-                <>
-                    {realm.password && social?.providers !== undefined && social.providers.length !== 0 && (
-                        <Grid
-                            gridTemplateColumns={{
-                                base: "repeat(1, 1fr)",
-                                md: "repeat(2, 1fr)"
-                            }}
-                            gap={4}
-                        >
-                            {social.providers.map((...[p]) => (
-                                <GridItem key={p.alias}>
-                                    <Card
-                                        external
-                                        id={`social-${p.alias} ${p.displayName} ${p.providerId}`}
-                                        w="full"
-                                        maxW="full"
-                                        flexGrow={1}
-                                        order={getProviderOrder(p.providerId)}
-                                    >
-                                        {/* @ts-expect-error-error */}
-                                        <CardContent href={p.loginUrl}>
-                                            <CardBody w="full">
-                                                <HStack>
-                                                    <Icon icon={getProviderLogo(p.alias)} textStyle="3xl" />
-                                                    <CardTitle external>
-                                                        <span>
-                                                            Sign in with <span dangerouslySetInnerHTML={{ __html: kcSanitize(p.displayName) }} />
-                                                        </span>
-                                                    </CardTitle>
-                                                </HStack>
-                                            </CardBody>
-                                        </CardContent>
-                                    </Card>
-                                </GridItem>
-                            ))}
-                        </Grid>
-                    )}
-                </>
-            }
-        >
-            <div></div>
-            {/* {realm.password && (
+  return (
+    <Template
+      kcContext={kcContext}
+      i18n={i18n}
+      doUseDefaultCss={doUseDefaultCss}
+      displayMessage={!messagesPerField.existsError("username", "password")}
+      headerNode={msg("loginAccountTitle")}
+      displayInfo={realm.password && realm.registrationAllowed && !registrationDisabled}
+      infoNode={<></>}
+      socialProvidersNode={
+        <>
+          {realm.password && social?.providers !== undefined && social.providers.length !== 0 && (
+            <Grid
+              gridTemplateColumns={{
+                base: "repeat(1, 1fr)",
+                md: "repeat(2, 1fr)"
+              }}
+              gap={4}
+            >
+              {social.providers.map((...[p]) => (
+                <GridItem key={p.alias}>
+                  <Card
+                    external
+                    id={`social-${p.alias} ${p.displayName} ${p.providerId}`}
+                    w="full"
+                    maxW="full"
+                    flexGrow={1}
+                    order={getProviderOrder(p.providerId)}
+                  >
+                    {/* @ts-expect-error-error */}
+                    <CardContent tabIndex={0} href={p.loginUrl}>
+                      <CardBody w="full">
+                        <HStack>
+                          <Icon textStyle="3xl">{getProviderLogo(p.alias)}</Icon>
+                          <CardTitle external>
+                            <span>
+                              Sign in with <span dangerouslySetInnerHTML={{ __html: kcSanitize(p.displayName) }} />
+                            </span>
+                          </CardTitle>
+                        </HStack>
+                      </CardBody>
+                    </CardContent>
+                  </Card>
+                </GridItem>
+              ))}
+            </Grid>
+          )}
+        </>
+      }
+    >
+      <div></div>
+      {/* {realm.password && (
                 <Box
                     as="form"
                     mb={4}
@@ -175,6 +175,6 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                     />
                 </Box>
             )} */}
-        </Template>
-    );
+    </Template>
+  );
 }

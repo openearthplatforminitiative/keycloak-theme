@@ -6,7 +6,7 @@ import type { I18n } from "./i18n";
 import type { KcContext } from "./KcContext";
 import { NativeSelect, Text } from "@openepi/react-ui";
 import { Box, HStack, VStack, styled } from "@openepi/styled-system/jsx";
-import { Logo } from "../logos/openepi";
+import { Logo } from "../components/openepi";
 import { Token, token } from "@openepi/styled-system/tokens";
 import { CheckCircleFill, ErrorFill, InfoFill, WarningFill } from "@openepi/icons";
 

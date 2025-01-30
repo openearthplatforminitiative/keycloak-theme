@@ -22,6 +22,7 @@
         "@openepi/react-ui": "file:../frontend-packages/packages/react-ui",
         "@openepi/styled-system": "file:../frontend-packages/packages/styled-system",
         "@pandacss/dev": "^0.51.1",
+        "@types/styled-components": "^5.1.34",
         "keycloakify": "^11.8.8",
         "postcss": "^8.5.1",
         "react": "^18.2.0",

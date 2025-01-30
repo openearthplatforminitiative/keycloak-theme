@@ -10,57 +10,58 @@ import { Button } from "@openepi/react-ui";
 import { HStack } from "@openepi/styled-system/jsx";
 
 type LoginUpdateProfileProps = PageProps<Extract<KcContext, { pageId: "login-update-profile.ftl" }>, I18n> & {
-    UserProfileFormFields: LazyOrNot<(props: UserProfileFormFieldsProps) => JSX.Element>;
-    doMakeUserConfirmPassword: boolean;
+  UserProfileFormFields: LazyOrNot<(props: UserProfileFormFieldsProps) => JSX.Element>;
+  doMakeUserConfirmPassword: boolean;
 };
 
 export default function LoginUpdateProfile(props: LoginUpdateProfileProps) {
-    const { kcContext, i18n, doUseDefaultCss, Template, classes, UserProfileFormFields, doMakeUserConfirmPassword } = props;
+  const { kcContext, i18n, doUseDefaultCss, Template, classes, UserProfileFormFields, doMakeUserConfirmPassword } = props;
 
-    const { kcClsx } = getKcClsx({
-        doUseDefaultCss,
-        classes
-    });
+  const { kcClsx } = getKcClsx({
+    doUseDefaultCss,
+    classes
+  });
 
-    const { messagesPerField, url, isAppInitiatedAction } = kcContext;
+  const { messagesPerField, url, isAppInitiatedAction } = kcContext;
 
-    const { msg, msgStr } = i18n;
+  const { msg, msgStr } = i18n;
 
-    const [isFormSubmittable, setIsFormSubmittable] = useState(false);
+  const [isFormSubmittable, setIsFormSubmittable] = useState(false);
 
-    return (
-        <Template
-            kcContext={kcContext}
-            i18n={i18n}
-            doUseDefaultCss={doUseDefaultCss}
-            classes={classes}
-            displayRequiredFields
-            headerNode={msg("loginProfileTitle")}
-            displayMessage={messagesPerField.exists("global")}
-        >
-            <form id="kc-update-profile-form" action={url.loginAction} method="post">
-                <UserProfileFormFields
-                    kcContext={kcContext}
-                    i18n={i18n}
-                    kcClsx={kcClsx}
-                    onIsFormSubmittableValueChange={setIsFormSubmittable}
-                    doMakeUserConfirmPassword={doMakeUserConfirmPassword}
-                />
-                <HStack justify="end" mt={4}>
-                    <Button
-                        // @ts-expect-error-error
-                        as="input"
-                        disabled={!isFormSubmittable}
-                        type="submit"
-                        value={msgStr("doSubmit")}
-                    />
-                    {isAppInitiatedAction && (
-                        <Button type="submit" name="cancel-aia" value="true" formNoValidate>
-                            {msg("doCancel")}
-                        </Button>
-                    )}
-                </HStack>
-            </form>
-        </Template>
-    );
+  return (
+    <Template
+      kcContext={kcContext}
+      i18n={i18n}
+      doUseDefaultCss={doUseDefaultCss}
+      classes={classes}
+      displayRequiredFields
+      headerNode={msg("loginProfileTitle")}
+      displayMessage={messagesPerField.exists("global")}
+    >
+      <form id="kc-update-profile-form" action={url.loginAction} method="post">
+        <UserProfileFormFields
+          kcContext={kcContext}
+          i18n={i18n}
+          kcClsx={kcClsx}
+          onIsFormSubmittableValueChange={setIsFormSubmittable}
+          doMakeUserConfirmPassword={doMakeUserConfirmPassword}
+        />
+        <HStack justify="end" mt={4}>
+          <Button
+            // @ts-expect-error-error
+            as="input"
+            tabIndex={0}
+            disabled={!isFormSubmittable}
+            type="submit"
+            value={msgStr("doSubmit")}
+          />
+          {isAppInitiatedAction && (
+            <Button type="submit" name="cancel-aia" value="true" formNoValidate>
+              {msg("doCancel")}
+            </Button>
+          )}
+        </HStack>
+      </form>
+    </Template>
+  );
 }

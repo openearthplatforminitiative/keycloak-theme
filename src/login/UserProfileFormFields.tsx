@@ -10,7 +10,7 @@ import {
 import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFormFieldsProps";
 import type { Attribute, KcContext } from "keycloakify/login/KcContext";
 import type { I18n } from "keycloakify/login/i18n";
-import { Field, FieldHelperText, FieldLabel, FieldRequiredIndicator, IconButton, Input, InputGroup } from "@openepi/react-ui";
+import { Field, FieldErrorText, FieldLabel, FieldRequiredIndicator, IconButton, Input, InputGroup } from "@openepi/react-ui";
 import { Visibility, VisibilityOff } from "@openepi/icons";
 import { VStack } from "@openepi/styled-system/jsx";
 
@@ -52,6 +52,7 @@ export default function UserProfileFormFields(props: UserProfileFormFieldsProps<
             )}
             <Field
               w="full"
+              invalid={displayableErrors.length > 0}
               required={attribute.required && displayableErrors.length > 0}
               style={{
                 display: attribute.name === "password-confirm" && !doMakeUserConfirmPassword ? "none" : undefined
@@ -161,7 +162,7 @@ function FieldErrors(props: { attribute: Attribute; displayableErrors: FormField
   }
 
   return (
-    <FieldHelperText id={`input-error-${attribute.name}${fieldIndex === undefined ? "" : `-${fieldIndex}`}`} aria-live="polite">
+    <FieldErrorText id={`input-error-${attribute.name}${fieldIndex === undefined ? "" : `-${fieldIndex}`}`} aria-live="polite">
       {displayableErrors
         .filter(error => error.fieldIndex === fieldIndex)
         .map(({ errorMessage }, i, arr) => (
@@ -170,7 +171,7 @@ function FieldErrors(props: { attribute: Attribute; displayableErrors: FormField
             {arr.length - 1 !== i && <br />}
           </Fragment>
         ))}
-    </FieldHelperText>
+    </FieldErrorText>
   );
 }
 
